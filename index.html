@@ -1,60 +1,325 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DESIGNER</title>
-    <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            line-height: 1.7;
-            color: #333;
-            margin: 0;
-            padding: 0;
-            background-color: #f8f9fa;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-        .container {
-            max-width: 850px;
-            margin: 40px auto;
-            padding: 40px 50px;
-            background-color: #ffffff;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            text-align: center;
-        }
-        h1 {
-            color: #1a237e; /* A deep blue color */
-            font-size: 4em;
-            margin-bottom: 25px;
-            border-bottom: none;
-        }
-        .status-note {
-            text-align: center;
-            font-weight: bold;
-            background-color: #fff3e0; /* A light orange background */
-            border-left: 5px solid #ff9800; /* A matching orange border */
-            padding: 20px;
-            margin: 25px 0;
-            border-radius: 4px;
-            display: inline-block;
-        }
-        p {
-            margin: 0;
-        }
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>DESIGNER: Design-Logic-Guided Multidisciplinary Data Synthesis for LLM Reasoning</title>
+    <meta name="description" content="Large language models (LLMs) have achieved remarkable success in many tasks but still struggle with complex, multi-step reasoning, particularly across diverse disciplines.">
+    <meta name="keywords" content="DESIGNER, design logic, LLM reasoning, data synthesis, multidisciplinary, question generation, DLR-Book, DLR-Web">
+    <meta name="author" content="Weize Liu, Yongchi Zhao, Yijia Luo, Mingyu Xu, Jiaheng Liu, Yanan Li, Xiguo Hu, Zhiqi Bai, Yuchi Xu, Wenbo Su, Bo Zheng">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="English">
 
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Design-Logic-Reasoning">
+    <meta property="og:title" content="DESIGNER: Design-Logic-Guided Multidisciplinary Data Synthesis for LLM Reasoning">
+    <meta property="og:description" content="Large language models (LLMs) have achieved remarkable success in many tasks but still struggle with complex, multi-step reasoning across diverse disciplines.">
+    <meta property="og:url" content="https://attention-is-all-i-need.github.io/Design-Logic-Reasoning">
+    <meta property="og:image" content="https://attention-is-all-i-need.github.io/Design-Logic-Reasoning/static/images/social_preview.png">
+    <meta property="og:image:alt" content="DESIGNER - Research Preview">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="DESIGNER: Design-Logic-Guided Multidisciplinary Data Synthesis for LLM Reasoning">
+    <meta name="twitter:description" content="Large language models (LLMs) have achieved remarkable success in many tasks but still struggle with complex, multi-step reasoning across diverse disciplines.">
+    <meta name="twitter:image" content="https://attention-is-all-i-need.github.io/Design-Logic-Reasoning/static/images/social_preview.png">
+
+    <meta name="citation_title" content="DESIGNER: Design-Logic-Guided Multidisciplinary Data Synthesis for LLM Reasoning">
+    <meta name="citation_author" content="Liu, Weize">
+    <meta name="citation_author" content="Zhao, Yongchi">
+    <meta name="citation_author" content="Luo, Yijia">
+    <meta name="citation_author" content="Xu, Mingyu">
+    <meta name="citation_author" content="Liu, Jiaheng">
+    <meta name="citation_author" content="Li, Yanan">
+    <meta name="citation_author" content="Hu, Xiguo">
+    <meta name="citation_author" content="Bai, Zhiqi">
+    <meta name="citation_author" content="Xu, Yuchi">
+    <meta name="citation_author" content="Su, Wenbo">
+    <meta name="citation_author" content="Zheng, Bo">
+    <meta name="citation_publication_date" content="2025">
+    <meta name="citation_conference_title" content="arXiv">
+    <meta name="citation_pdf_url" content="https://arxiv.org/pdf/2508.12726">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+
+    <style>
+        :root { --primary: #2563eb; }
+        body { font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; }
+        .publication-title { line-height: 1.1; color: #111827; font-weight: 800; letter-spacing: -0.02em; font-size: clamp(2.2rem, 5vw, 3.0rem); }
+        .author-block { margin: 0 .25rem; }
+        .hero.is-primary { background: none; }
+        .buttons .button.is-dark { background-color: #111827; }
+        .scroll-to-top { position: fixed; bottom: 24px; right: 24px; width: 42px; height: 42px; border-radius: 50%; border: none; background: #111827; color: #fff; display: none; align-items: center; justify-content: center; cursor: pointer; }
+        .scroll-to-top.show { display: flex; }
+        .footer { border-top: 1px solid #e5e7eb; }
+        pre code { white-space: pre; }
+        /* Three-line table style (top rule, mid rule, bottom rule) */
+        .three-line-table { border-collapse: separate; border-spacing: 0; width: 100%; border-top: 2px solid #000 !important; border-bottom: 2px solid #000 !important; }
+        .three-line-table thead th { border-bottom: 1px solid #000 !important; }
+        .three-line-table td, .three-line-table th { border: 0 !important; }
+        .three-line-table th, .three-line-table td { padding: 0.5rem 0.5rem; text-align: center; }
+        .table-note { margin-top: 0.5rem; color: #6b7280; font-size: 0.9rem; }
+        /* Make content wider and consistent across sections */
+        .container.is-max-desktop { max-width: 812px; }
+        .columns.is-centered .column.is-four-fifths { flex: 0 0 100%; width: 100%; max-width: 100%; }
+        .publication-authors { color: #111827; font-size: 1.1rem; font-weight: 600; }
+        .affiliations-line, .emails-line { color: #1f2937; margin-top: .35rem; }
+        .hero .publication-links .button { box-shadow: 0 1px 2px rgba(0,0,0,.05); }
+        /* Title can span full width */
+        .hero .container.is-max-desktop { max-width: none; }
+        /* Unified subsection spacing */
+        .subsection-title { margin-top: 1.25rem; margin-bottom: 0.5rem; }
+        /* Hugging Face emoji icon sizing */
+        .button .icon .hf-emoji { display: inline-block; font-size: 1.1em; line-height: 1; }
     </style>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ScholarlyArticle",
+      "headline": "DESIGNER: Design-Logic-Guided Multidisciplinary Data Synthesis for LLM Reasoning",
+      "description": "Large language models (LLMs) have achieved remarkable success in many natural language tasks but still struggle with complex, multi-step reasoning, particularly across diverse disciplines.",
+      "author": [
+        {"@type": "Person", "name": "Weize Liu"},
+        {"@type": "Person", "name": "Yongchi Zhao"},
+        {"@type": "Person", "name": "Yijia Luo"},
+        {"@type": "Person", "name": "Mingyu Xu"},
+        {"@type": "Person", "name": "Jiaheng Liu"},
+        {"@type": "Person", "name": "Yanan Li"},
+        {"@type": "Person", "name": "Xiguo Hu"},
+        {"@type": "Person", "name": "Zhiqi Bai"},
+        {"@type": "Person", "name": "Yuchi Xu"},
+        {"@type": "Person", "name": "Wenbo Su"},
+        {"@type": "Person", "name": "Bo Zheng"}
+      ],
+      "datePublished": "2025-08-18",
+      "publisher": {"@type": "Organization", "name": "arXiv"},
+      "url": "https://attention-is-all-i-need.github.io/Design-Logic-Reasoning",
+      "identifier": "arXiv:2508.12726",
+      "image": "https://attention-is-all-i-need.github.io/Design-Logic-Reasoning/static/images/social_preview.png",
+      "keywords": ["LLM reasoning", "design logic", "data synthesis", "multidisciplinary"]
+    }
+    </script>
 </head>
 <body>
-    <div class="container">
-        <h1>DESIGNER</h1>
-        
-        <div class="status-note">
-            <p>We are actively developing this project. The datasets will be made publicly available soon. Stay tuned!</p>
+    <button class="scroll-to-top" id="scrollTopBtn" title="Scroll to top" aria-label="Scroll to top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <main id="main-content">
+        <section class="hero">
+            <div class="hero-body">
+                <div class="container is-max-desktop">
+                    <div class="columns is-centered">
+                        <div class="column has-text-centered">
+                            <h1 class="title publication-title">DESIGNER: Design-Logic-Guided Multidisciplinary<br>Data Synthesis for LLM Reasoning</h1>
+                            <div class="publication-authors">
+                                <div>
+                                    <span class="author-block">Weize Liu<sup>1,*</sup></span>
+                                    <span class="author-block">Yongchi Zhao<sup>1,*,&dagger;</sup></span>
+                                    <span class="author-block">Yijia Luo<sup>1</sup></span>
+                                    <span class="author-block">Mingyu Xu<sup>1</sup></span>
+                                    <span class="author-block">Jiaheng Liu<sup>2,&dagger;</sup></span>
+                                </div>
+                                <div>
+                                    <span class="author-block">Yanan Li<sup>1</sup></span>
+                                    <span class="author-block">Xiguo Hu<sup>1</sup></span>
+                                    <span class="author-block">Zhiqi Bai<sup>1</sup></span>
+                                    <span class="author-block">Yuchi Xu<sup>1</sup></span>
+                                    <span class="author-block">Wenbo Su<sup>1</sup></span>
+                                    <span class="author-block">Bo Zheng<sup>1</sup></span>
+                                </div>
+                            </div>
+                            <div class="affiliations-line"><sup>1</sup> Alibaba Group &nbsp;&nbsp; <sup>2</sup> Nanjing University</div>
+                            <div class="affiliations-line"><sup>*</sup> Equal contribution &nbsp;&nbsp; <sup>&dagger;</sup> Corresponding authors</div>
+                            <div class="emails-line">weizeliu1115@gmail.com · zhaoyongchi.zyc@gmail.com · liujiaheng@nju.edu.cn</div>
+                            <div class="publication-links" style="margin-top:1rem;">
+                                <div class="buttons is-centered">
+                                    <a href="https://arxiv.org/abs/2508.12726" target="_blank" class="button is-dark is-rounded">
+                                        <span class="icon"><i class="ai ai-arxiv"></i></span>
+                                        <span>arXiv</span>
+                                    </a>
+                                    <a href="https://arxiv.org/pdf/2508.12726" target="_blank" class="button is-dark is-rounded">
+                                        <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                                        <span>Paper</span>
+                                    </a>
+                                    <a href="https://huggingface.co/datasets/Attention1115/designer-design-logics" target="_blank" class="button is-dark is-rounded">
+                                        <span class="icon"><span class="hf-emoji">🤗</span></span>
+                                        <span>Design Logics</span>
+                                    </a>
+                                    <a href="https://huggingface.co/datasets/Attention1115/DLR-Web" target="_blank" class="button is-dark is-rounded">
+                                        <span class="icon"><span class="hf-emoji">🤗</span></span>
+                                        <span>Datasets</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" style="background:#f3f4f6; padding: 2.5rem 0;">
+            <div class="container is-max-desktop" style="padding-left: 1rem; padding-right: 1rem;">
+                <div class="columns is-centered has-text-centered">
+                    <div class="column is-four-fifths">
+                        <h2 class="title is-3" style="margin-bottom:1rem;">Abstract</h2>
+                        <div class="content has-text-justified">
+                            <p>
+                                Large language models (LLMs) have achieved remarkable success in many natural language tasks but still struggle with complex, multi-step reasoning, particularly across diverse disciplines. Existing reasoning datasets often lack disciplinary breadth, reasoning depth, and diversity, and lack guiding principles for question synthesis. We propose DESIGNER: a DESIGN-logic-guidEd Reasoning data synthesis pipeline that leverages naturally available, extensive raw documents (e.g., book corpus and web corpus) to generate multidisciplinary challenging questions. We introduce the concept of "design logic" and instruct LLMs to mimic human educators' question-creation process, enabling automated synthesis of large-scale, high-difficulty questions. We use LLMs to reverse-engineer and abstract over 120,000 design logics from existing questions across various disciplines. By matching these design logics with source documents, we are able to create reasoning questions that far surpass the difficulty and diversity of existing datasets. Using this pipeline, we synthesized two large-scale reasoning datasets that span 75 disciplines: DLR-Book (3.04 million questions from the book corpus) and DLR-Web (1.66 million questions from the web corpus). Data analysis indicates that the questions synthesized by our method exhibit greater difficulty and diversity compared to those in the baseline datasets. We validate our synthesized data through supervised fine-tuning (SFT) on the Qwen3 and Llama3 model families. Our data substantially enhances their multidisciplinary reasoning capabilities, outperforming existing datasets. Notably, after SFT on our datasets, the base versions of these models even surpass their official instruction-tuned counterparts.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Removed Motivation section as requested -->
+
+        <section class="section">
+            <div class="container is-max-desktop">
+                <div class="columns is-centered has-text-centered">
+                    <div class="column is-four-fifths">
+                        <h2 class="title is-3">The DESIGNER Pipeline</h2>
+                        <img src="static/images/fig1.png" alt="Overview of design logic" />
+                        <p class="has-text-grey is-italic has-text-centered" style="margin-top:0.5rem; margin-bottom:1.25rem;">Left: Design Logic — the structured process transforming knowledge into complex questions. Right: DESIGNER emulates this process to synthesize diverse, multidisciplinary questions.</p>
+                        <div class="content has-text-justified">
+                            <p>
+                                We propose <b>DESIGNER</b>: a <b>DESIGN</b>-logic-guid<b>E</b>d <b>R</b>easoning data synthesis pipeline that leverages large-scale, multidisciplinary raw documents (book and web corpora) to synthesize challenging questions across diverse disciplines. The central insight is the notion of <b>Design Logic</b>, which encapsulates how human experts transform knowledge into complex, reasoning-intensive exam questions. This meta-knowledge guides our synthesis.
+                            </p>
+                            <p>
+                                The pipeline comprises three phases. (1) <b>Data curation</b>: we process large-scale book and web corpora with multi-dimensional labeling and filtering (discipline, readability, educational value, reasoning depth) to construct a high-quality source library. From a question bank of hundreds of millions, we cluster and sample a diverse set of difficult questions, from which an LLM reverse-engineers and abstracts over <b>120K structured design logics</b> to construct a reusable design logic library. (2) <b>Core synthesis</b>: we adopt a two-stage retrieve-and-generate mechanism, in which vector similarity retrieves coarse candidate logics for each source document and an LLM performs fine-grained selection and synthesizes a graduate-level reasoning question by strictly following the logic's steps. (3) <b>Filtering and output</b>: we perform MinHash deduplication and 13-gram decontamination against benchmarks. Finally, we synthesize <b>long CoT responses</b> to form high-quality question–response pairs for supervised fine-tuning (SFT).
+                            </p>
+                            <img src="static/images/pipeline.png" alt="The DESIGNER data synthesis pipeline" />
+                            <p class="has-text-grey is-italic has-text-centered">Overview of the design logic concept and the three-phase DESIGNER pipeline.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container is-max-desktop">
+                <div class="columns is-centered has-text-centered">
+                    <div class="column is-four-fifths">
+                        <h2 class="title is-3">Data Analysis</h2>
+                        <div class="content has-text-justified">
+                            <h3 class="title is-5">Difficulty</h3>
+                            <p>
+                                Using a uniform difficulty labeling procedure, our datasets are markedly harder than baselines. The proportion of <b>"Very Hard"</b> questions is substantially higher than in all baseline datasets and benchmarks, while the proportion of <b>"Easy"</b> questions is negligible (<b>0.72%</b> in DLR-Web; <b>0.27%</b> in DLR-Book).
+                            </p>
+                            <img src="static/images/difficulty_distribution.png" alt="Difficulty distribution comparison" />
+
+                            <h3 class="title is-5" style="margin-top:1.25rem;">Diversity</h3>
+                            <p>
+                                Embedding-space diversity metrics computed on 300K sampled questions per dataset show consistently higher diversity for our data across <b>Mean Cosine Distance</b>, <b>Mean L2 Distance</b>, <b>1-NN Distance</b>, <b>Cluster Inertia</b>, and <b>Radius</b>. <b>DLR-Web</b> and <b>DLR-Book</b> exceed baselines, with ~2× gains on 1-NN distance.
+                            </p>
+                            
+                            <img src="static/images/Table1.png" alt="Diversity metrics table" />
+                            <div class="table-note" style="margin-top: 0.05rem;">Higher is better across all metrics. Bold = best; underline = second best.</div>
+
+                            <h3 class="title is-5" style="margin-top:1.25rem;">Disciplinary Distribution</h3>
+                            <p>
+                                Compared to existing multidisciplinary datasets that are skewed toward a few disciplines (e.g., mathematics), <b>DLR-Book</b> and <b>DLR-Web</b> provide a <b>balanced, comprehensive coverage across 75 disciplines</b>. Among them, only the Nemotron-Post-Training-v1 dataset exhibits a distribution comparable to ours, but its question difficulty and reasoning depth are substantially lower.
+                            </p>
+                            <img src="static/images/discipline_comparison.png" alt="Discipline distribution comparison" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container is-max-desktop">
+                <div class="columns is-centered has-text-centered">
+                    <div class="column is-four-fifths">
+                        <h2 class="title is-3">Experiments</h2>
+                        <div class="content has-text-justified">
+                            <p>
+                                We conduct SFT on base models from the Qwen3 and Llama3 series with DLR-Book, DLR-Web, and their combination, and evaluate under zero-shot settings on widely used reasoning benchmarks.
+                            </p>
+                            <h3 class="title is-5 subsection-title">Supervised Fine-Tuning (SFT) Experiments</h3>
+                            <p>We performed SFT on base models from the Qwen3 and Llama3 series using our synthetic datasets (DLR-Book, DLR-Web, and their combination) and compared the resulting models against their official instruction-tuned counterparts under a consistent zero-shot evaluation setting. The results indicate that our synthetic data yields substantial improvements without inducing overfitting to any particular benchmark; instead, it enhances the model's general and robust reasoning capabilities.</p>
+                            <img src="static/images/Table3.png" alt="SFT experiment results table" />
+                            <h3 class="title is-5 subsection-title">Comparison with baselines</h3>
+                            <p>On Qwen3-8B-Base, models trained on our data surpass those trained on OpenThoughts3, Nemotron-Post-Training-v1, WebInstruct (Full), and NaturalReasoning across benchmarks. <b>DLR-Book</b> attains the best <b>MMLU</b>, <b>MMLU-Pro</b>, and <b>GPQA-Diamond</b>, while <b>DLR-Web</b> achieves the best <b>SuperGPQA</b>.</p>
+
+                            <img src="static/images/Table4.png" alt="Comparison with baseline datasets table" />
+
+                            <h3 class="title is-5 subsection-title">Scaling law</h3>
+                            <p>Training on increasingly larger subsets sampled from DLR-Book yields consistent gains across all benchmarks, confirming positive data-scaling trends. The observed scaling laws confirm that our method provides a reliable pathway to achieving superior model performance by synthesizing more data. Future work can leverage our proposed design logics to synthesize even larger datasets for continued improvement.</p>
+                            <h3 class="title is-5 subsection-title">Effect of source corpus quality</h3>
+                            <p>Fine-tuning on book-synthesized data consistently outperforms web-synthesized data on most benchmarks (with the largest gains on GPQA-Diamond and SuperGPQA). Nevertheless, the performance gap between the two corpora is modest, demonstrating our method's robustness to source quality variations and its effectiveness at generating high-quality questions even from lower-quality corpora.</p>
+                            <div class="columns is-variable is-2">
+                                <div class="column is-half">
+                                    <img src="static/images/performance_scaling_law.png" alt="Performance scaling law" style="width:100%;height:auto;" />
+                                </div>
+                                <div class="column is-half">
+                                    <img src="static/images/corpus_quality.png" alt="Impact of source corpus quality" style="width:100%;height:auto;" />
+                                </div>
+                            </div>
+                            <h3 class="title is-5 subsection-title">Ablation studies</h3>
+                            <p>Removing explicit design logics or the coarse/fine ranking stages degrades performance; the complete <b>DESIGNER</b> pipeline performs best across benchmarks.</p>
+                            <img src="static/images/Table5.png" alt="Ablation study table" />
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="BibTeX">
+            <div class="container is-max-desktop content">
+                <div class="level">
+                    <div class="level-left">
+                        <h2 class="title">Reference</h2>
+                    </div>
+                    <div class="level-right">
+                        <button class="button is-small" id="copyBibBtn" title="Copy BibTeX">
+                            <span class="icon"><i class="fas fa-copy"></i></span>
+                            <span>Copy</span>
+                        </button>
+                    </div>
+                </div>
+                <p>If you find our method or datasets useful, please cite our paper:</p>
+                <pre id="bibtex-code"><code>@article{liu2025designer,
+  title={DESIGNER: Design-Logic-Guided Multidisciplinary Data Synthesis for LLM Reasoning},
+  author={Liu, Weize and Zhao, Yongchi and Luo, Yijia and Xu, Mingyu and Liu, Jiaheng and Li, Yanan and Hu, Xiguo and Bai, Zhiqi and Xu, Yuchi and Su, Wenbo and others},
+  journal={arXiv preprint arXiv:2508.12726},
+  year={2025}
+}</code></pre>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer" style="padding-top: 1rem; padding-bottom: 1rem;">
+        <div class="container" style="max-width: 720px;">
+            <div class="content has-text-centered" style="font-size: 0.9rem; color: #6b7280;">
+                <p>This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.</p>
+            </div>
         </div>
-    </div>
+    </footer>
+
+    <script>
+        const btn = document.getElementById('scrollTopBtn');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 400) { btn.classList.add('show'); } else { btn.classList.remove('show'); }
+        });
+        btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+        const copyBtn = document.getElementById('copyBibBtn');
+        copyBtn?.addEventListener('click', () => {
+            const code = document.getElementById('bibtex-code')?.innerText || '';
+            navigator.clipboard.writeText(code).then(() => {
+                copyBtn.classList.add('is-success');
+                copyBtn.innerHTML = '<span class="icon"><i class="fas fa-check"></i></span><span>Copied</span>';
+                setTimeout(() => { copyBtn.classList.remove('is-success'); copyBtn.innerHTML = '<span class="icon"><i class="fas fa-copy"></i></span><span>Copy</span>'; }, 1800);
+            });
+        });
+    </script>
 </body>
 </html>
