@@ -164,7 +164,7 @@
         </section>
 
         <section class="section" style="background:#f3f4f6; padding: 2.5rem 0;">
-            <div class="container is-max-desktop" style="padding-left: 1rem; padding-right: 1rem;">
+            <div class="container is-max-desktop">
                 <div class="columns is-centered has-text-centered">
                     <div class="column is-four-fifths">
                         <h2 class="title is-3" style="margin-bottom:1rem;">Abstract</h2>
@@ -186,10 +186,10 @@
                     <div class="column is-four-fifths">
                         <h2 class="title is-3">The DESIGNER Pipeline</h2>
                         <img src="static/images/fig1.png" alt="Overview of design logic" />
-                        <p class="has-text-grey is-italic has-text-centered" style="margin-top:0.5rem; margin-bottom:1.25rem;">Left: the structured process by which human educators transform knowledge into complex questions. Right: Our method, DESIGNER, emulates this process to synthesize diverse and multidisciplinary questions.</p>
+                        <p class="has-text-grey is-italic has-text-centered" style="margin-top:0.5rem; margin-bottom:1.25rem;">Left: The structured process by which human educators transform knowledge into complex questions. Right: Our method, DESIGNER, emulates this process to synthesize diverse and multidisciplinary questions.</p>
                         <div class="content has-text-justified">
                             <p>
-                                We propose <b>DESIGNER</b>: a <b>DESIGN</b>-logic-guid<b>E</b>d <b>R</b>easoning data synthesis pipeline that leverages large-scale, multidisciplinary raw documents (book and web corpora) to synthesize challenging questions across diverse disciplines. The central insight is the notion of <b>Design Logic</b>, which encapsulates how human experts transform knowledge into complex, reasoning-intensive exam questions. This meta-knowledge guides our synthesis.
+                                Existing data synthesis methods are typically either query-centric (limited by seed-pool coverage and model bias) or doc-centric (lacking control over difficulty). We propose <b>DESIGNER</b>: a <b>DESIGN</b>-logic-guid<b>E</b>d <b>R</b>easoning data synthesis pipeline that leverages large-scale, multidisciplinary raw documents (book and web corpora) to synthesize challenging questions across diverse disciplines. The central insight is the notion of <b>Design Logic</b>, which encapsulates how human experts transform knowledge into complex, reasoning-intensive exam questions. The design logic is a form of reusable meta-knowledge that abstracts the underlying reasoning structure, enabling LLMs to generate new questions with the same complex reasoning patterns from entirely different source texts. This enables the generation of complex, multi-step reasoning questions from raw text with explicit, abstract control over difficulty and diversity, which prior doc-centric approaches lacked.
                             </p>
                             <p>
                                 The pipeline comprises three phases. (1) <b>Data curation</b>: we process large-scale book and web corpora with multi-dimensional labeling and filtering (discipline, readability, educational value, reasoning depth) to construct a high-quality source library. From a question bank of hundreds of millions, we cluster and sample a diverse set of difficult questions, from which an LLM reverse-engineers and abstracts over <b>120K structured design logics</b> to construct a reusable design logic library. (2) <b>Core synthesis</b>: we adopt a two-stage retrieve-and-generate mechanism, in which vector similarity retrieves coarse candidate logics for each source document and an LLM performs fine-grained selection and synthesizes a graduate-level reasoning question by strictly following the logic's steps. (3) <b>Filtering and output</b>: we perform MinHash deduplication and 13-gram decontamination against benchmarks. Finally, we synthesize <b>long CoT responses</b> to form high-quality question–response pairs for supervised fine-tuning (SFT).
@@ -263,7 +263,7 @@
                                 </div>
                             </div>
                             <h3 class="title is-5 subsection-title">Ablation studies</h3>
-                            <p>Removing explicit design logics or the coarse/fine ranking stages degrades performance; the complete <b>DESIGNER</b> pipeline performs best across benchmarks.</p>
+                            <p>Removing explicit design logics or the coarse/fine ranking stages degrades performance; the complete <b>DESIGNER</b> pipeline performs best across benchmarks. We further evaluated the "w/o Design Logic" variant on the full book corpus (3.04 million samples). The performance degradation of "w/o Design Logic (Full)" is notably significant, providing stronger evidence for the advantage of employing design logic.</p>
                             <img src="static/images/Table5.png" alt="Ablation study table" />
                             
                         </div>
