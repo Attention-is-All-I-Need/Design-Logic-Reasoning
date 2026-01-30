@@ -4,9 +4,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>DESIGNER: Design-Logic-Guided Multidisciplinary Data Synthesis for LLM Reasoning</title>
-    <meta name="description" content="DESIGNER: A framework for Data Synthesis and LLM Reasoning. We leverage design logic to generate high-quality Synthetic Data, enhancing model performance on complex reasoning tasks across diverse Multidisciplinary domains.">
+    <meta name="description" content="DESIGNER: A framework for Data Synthesis and LLM Reasoning. We leverage Design Logic to generate high-quality Synthetic Data, enhancing model performance on complex reasoning tasks across diverse Multidisciplinary domains.">
     <link rel="canonical" href="https://attention-is-all-i-need.github.io/Design-Logic-Reasoning/">
-    <meta name="keywords" content="DESIGNER, design logic, LLM reasoning, data synthesis, multidisciplinary, question generation, DLR-Book, DLR-Web, ICLR 2026, synthetic data">
+    <meta name="keywords" content="DESIGNER, Design Logic, LLM reasoning, data synthesis, multidisciplinary, question generation, DLR-Book, DLR-Web, ICLR 2026, synthetic data">
     <meta name="author" content="Weize Liu, Yongchi Zhao, Yijia Luo, Mingyu Xu, Jiaheng Liu, Yanan Li, Xiguo Hu, Zhiqi Bai, Yuchi Xu, Wenbo Su, Bo Zheng">
     <meta name="robots" content="index, follow">
     <meta name="language" content="English">
@@ -104,7 +104,7 @@
       "url": "https://attention-is-all-i-need.github.io/Design-Logic-Reasoning",
       "identifier": "arXiv:2508.12726",
       "image": "https://attention-is-all-i-need.github.io/Design-Logic-Reasoning/static/images/social_preview.png",
-      "keywords": ["LLM reasoning", "design logic", "data synthesis", "multidisciplinary", "ICLR 2026"]
+      "keywords": ["LLM reasoning", "Design Logic", "data synthesis", "multidisciplinary", "ICLR 2026"]
     }
     </script>
 </head>
@@ -186,7 +186,7 @@
                         <h2 class="title is-3" style="margin-bottom:1rem;">Abstract</h2>
                         <div class="content has-text-justified">
                             <p>
-                                Large language models (LLMs) perform strongly on many language tasks but still struggle with complex multi-step reasoning across disciplines. Existing reasoning datasets often lack disciplinary breadth, reasoning depth, and diversity, as well as guiding principles for question synthesis. Since post-training and even mid-training rely heavily on exam-style data, a key challenge is to rapidly synthesize large volumes of high-quality, human-like multidisciplinary exam questions with controllable difficulty, diversity, and question types. We propose <b>DESIGNER</b>: a <b>DESIGN</b>-logic-guid<b>E</b>d <b>R</b>easoning data synthesis pipeline that leverages naturally available, extensive raw documents (e.g., book corpus and web corpus) to generate multidisciplinary challenging questions. We introduce the concept of "design logic" and instruct LLMs to mimic human educators' question-creation process, enabling the automated synthesis of large-scale questions. We use LLMs to reverse-engineer and abstract over 120,000 design logics from existing questions across various disciplines. By designing a two-stage retrieve-and-generate mechanism to match these design logics with raw corpus, we synthesized two large-scale reasoning datasets that span 75 disciplines: DLR-Book (3.04 million questions from the book corpus) and DLR-Web (1.66 million questions from the web corpus). Data analysis indicates that the questions synthesized by our method exhibit greater difficulty and diversity compared to those in the baseline datasets. Supervised fine-tuning (SFT) on Qwen3 and Llama3 with our data substantially improves multidisciplinary reasoning and outperforms existing datasets. Notably, by applying SFT on the base versions of these models using only our data, we even surpass their official final models that have undergone the full post-training.
+                                Large language models (LLMs) perform strongly on many language tasks but still struggle with complex multi-step reasoning across disciplines. Existing reasoning datasets often lack disciplinary breadth, reasoning depth, and diversity, as well as guiding principles for question synthesis. We propose <b>DESIGNER</b>: a <b>DESIGN</b>-logic-guid<b>E</b>d <b>R</b>easoning data synthesis pipeline that leverages naturally available, extensive raw documents to generate multidisciplinary questions. The central insight is Design Logic, a form of reusable meta-knowledge that encapsulates the structured process human experts use to transform knowledge into complex exam questions, enabling LLMs to generate new questions with the same complex reasoning patterns from entirely different source texts with explicit control over difficulty, diversity, and question types. We use LLMs to reverse-engineer and abstract over 120,000 Design Logics from existing questions across various disciplines. By designing a two-stage retrieve-and-generate mechanism to match these Design Logics with raw corpus, we synthesized two large-scale reasoning datasets that span 75 disciplines: DLR-Book (3.04 million questions from the book corpus) and DLR-Web (1.66 million questions from the web corpus). Data analysis indicates that the questions synthesized by our method exhibit greater difficulty and diversity compared to those in the baseline datasets. Supervised fine-tuning (SFT) on Qwen3 and Llama3 with our data substantially improves multidisciplinary reasoning and outperforms baseline datasets. Notably, by applying SFT on the base versions of these models using only our data, we even surpass their official final models that have undergone the full post-training.
                             </p>
                         </div>
                     </div>
@@ -201,17 +201,17 @@
                 <div class="columns is-centered has-text-centered">
                     <div class="column is-four-fifths">
                         <h2 class="title is-3">The DESIGNER Pipeline</h2>
-                        <img src="static/images/fig1.png" alt="Overview of design logic" />
+                        <img src="static/images/fig1.png" alt="Overview of Design Logic" />
                         <p class="has-text-grey is-italic has-text-centered" style="margin-top:0.5rem; margin-bottom:1.25rem;">Left: The structured process by which human educators transform knowledge into complex questions. Right: Our method, DESIGNER, emulates this process to synthesize diverse and multidisciplinary questions.</p>
                         <div class="content has-text-justified">
                             <p>
-                                Existing data synthesis methods are typically either query-centric (limited by seed-pool coverage and model bias) or document-centric (lacking control over difficulty). We propose <b>DESIGNER</b>: a <b>DESIGN</b>-logic-guid<b>E</b>d <b>R</b>easoning data synthesis pipeline that leverages large-scale, multidisciplinary raw documents (book and web corpora) to synthesize challenging questions across diverse disciplines. The central insight is the notion of <b>Design Logic</b>, which encapsulates how human experts transform knowledge into complex, reasoning-intensive exam questions. The design logic is a form of reusable meta-knowledge that abstracts the underlying reasoning structure, enabling LLMs to generate new questions with the same complex reasoning patterns from entirely different source texts. This enables the generation of complex, multi-step reasoning questions from raw text with explicit control over difficulty, diversity, and question types, which prior document-centric approaches lacked.
+                                Existing data synthesis methods are typically either query-centric (limited by seed-pool coverage and model bias) or document-centric (lacking control over difficulty). We propose <b>DESIGNER</b>: a <b>DESIGN</b>-logic-guid<b>E</b>d <b>R</b>easoning data synthesis pipeline that leverages large-scale, multidisciplinary raw documents (book and web corpora) to synthesize challenging questions across diverse disciplines. The central insight is the notion of <b>Design Logic</b>, which encapsulates how human experts transform knowledge into complex, reasoning-intensive exam questions. The Design Logic is a form of reusable meta-knowledge that abstracts the underlying reasoning structure, enabling LLMs to generate new questions with the same complex reasoning patterns from entirely different source texts. This enables the generation of complex, multi-step reasoning questions from raw text with explicit control over difficulty, diversity, and question types, which prior document-centric approaches lacked.
                             </p>
                             <p>
-                                The pipeline comprises three phases. (1) <b>Data curation</b>: we process large-scale book and web corpora with multi-dimensional labeling and filtering (discipline, readability, educational value, reasoning depth) to construct a high-quality source library. From a question bank of hundreds of millions, we cluster and sample a diverse set of difficult questions, from which an LLM reverse-engineers and abstracts over <b>120K structured design logics</b> to construct a reusable design logic library. (2) <b>Core synthesis</b>: we adopt a two-stage retrieve-and-generate mechanism, in which vector similarity retrieves coarse candidate logics for each source document and an LLM performs fine-grained selection and synthesizes a graduate-level reasoning question by strictly following the logic's steps. (3) <b>Filtering and output</b>: we perform MinHash deduplication and 13-gram decontamination against benchmarks. Finally, we synthesize <b>long CoT responses</b> to form high-quality question–response pairs for supervised fine-tuning (SFT).
+                                The pipeline comprises three phases. (1) <b>Data curation</b>: we process large-scale book and web corpora with multi-dimensional labeling and filtering (discipline, readability, educational value, reasoning depth) to construct a high-quality source library. From a question bank of hundreds of millions, we cluster and sample a diverse set of difficult questions, from which an LLM reverse-engineers and abstracts over <b>120K structured Design Logics</b> to construct a reusable Design Logic library. (2) <b>Core synthesis</b>: we adopt a two-stage retrieve-and-generate mechanism, in which vector similarity retrieves coarse candidate logics for each source document and an LLM performs fine-grained selection and synthesizes a graduate-level reasoning question by strictly following the logic's steps. (3) <b>Filtering and output</b>: we perform MinHash deduplication and 13-gram decontamination against benchmarks. Finally, we synthesize <b>long CoT responses</b> to form high-quality question–response pairs for supervised fine-tuning (SFT).
                             </p>
                             <img src="static/images/pipeline.png" alt="The DESIGNER data synthesis pipeline" />
-                            <p class="has-text-grey is-italic has-text-centered">Overview of the design logic concept and the three-phase DESIGNER pipeline.</p>
+                            <p class="has-text-grey is-italic has-text-centered">Overview of the Design Logic concept and the three-phase DESIGNER pipeline.</p>
                         </div>
                     </div>
                 </div>
@@ -236,7 +236,7 @@
                             </p>
                             
                             <img src="static/images/Table1.png" alt="Diversity metrics table" />
-                            <div class="table-note" style="margin-top: 0.05rem;">Higher is better across all metrics. Bold = best; underline = second best.</div>
+                            <p class="has-text-grey is-italic" style="margin-top: -0.3rem; font-size: 0.9rem;">Higher is better across all metrics. Bold = best; underline = second best.</p>
 
                             <h3 class="title is-5" style="margin-top:1.25rem;">Disciplinary Distribution</h3>
                             <p>
@@ -256,7 +256,7 @@
                         <h2 class="title is-3">Experiments</h2>
                         <div class="content has-text-justified">
                             <p>
-                                We conduct SFT on base models from the Qwen3 and Llama3 series with DLR-Book, DLR-Web, and their combination, and evaluate under zero-shot settings on widely used reasoning benchmarks.
+                                We conduct SFT on base models from the <b>Qwen3</b> and <b>Llama3 series</b> with <b>DLR-Book</b>, <b>DLR-Web</b>, and <b>their combination</b>, and evaluate under zero-shot settings on widely used reasoning benchmarks.
                             </p>
                             <h3 class="title is-5 subsection-title">Supervised Fine-Tuning (SFT) Experiments</h3>
                             <p>We performed SFT on base models from the Qwen3 and Llama3 series using our synthetic datasets (DLR-Book, DLR-Web, and their combination) and compared the resulting models against their official instruction-tuned counterparts under a consistent zero-shot evaluation setting. The results indicate that our synthetic data yields substantial improvements without inducing overfitting to any particular benchmark; instead, it enhances the model's general and robust reasoning capabilities.</p>
@@ -267,9 +267,9 @@
                             <img src="static/images/Table4.png" alt="Comparison with baseline datasets table" />
 
                             <h3 class="title is-5 subsection-title">Scaling law</h3>
-                            <p>Training on increasingly larger subsets sampled from DLR-Book yields consistent gains across all benchmarks, confirming positive data-scaling trends. The observed scaling laws confirm that our method provides a reliable pathway to achieving superior model performance by synthesizing more data. Future work can leverage our proposed design logics to synthesize even larger datasets for continued improvement.</p>
+                            <p>Training on increasingly larger subsets sampled from DLR-Book yields consistent gains across all benchmarks, confirming positive <b>data-scaling</b> trends. The observed scaling laws confirm that our method provides a reliable pathway to achieving superior model performance by synthesizing more data. Future work can leverage our proposed Design Logics to synthesize even larger datasets for continued improvement.</p>
                             <h3 class="title is-5 subsection-title">Effect of source corpus quality</h3>
-                            <p>Fine-tuning on book-synthesized data consistently outperforms web-synthesized data on most benchmarks (with the largest gains on GPQA-Diamond and SuperGPQA). Nevertheless, the performance gap between the two corpora is modest, demonstrating our method's robustness to source quality variations and its effectiveness at generating high-quality questions even from lower-quality corpora.</p>
+                            <p>Fine-tuning on book-synthesized data consistently outperforms web-synthesized data on most benchmarks (with the largest gains on GPQA-Diamond and SuperGPQA). Nevertheless, the performance gap between the two corpora is <b>small</b>, demonstrating our method's robustness to source quality variations and its effectiveness at generating high-quality questions even from lower-quality corpora.</p>
                             <div class="columns is-variable is-2">
                                 <div class="column is-half">
                                     <img src="static/images/performance_scaling_law.png" alt="Performance scaling law" style="width:100%;height:auto;" />
@@ -279,7 +279,7 @@
                                 </div>
                             </div>
                             <h3 class="title is-5 subsection-title">Ablation studies</h3>
-                            <p>We conducted an ablation study to assess the contributions of three key components: guidance from design logics, the coarse ranking, and the fine ranking of design logics. To ensure fair comparison, all ablation variants synthesized questions from the same book corpus by uniformly sampling 304,181 instances. The results show that removing explicit design logics or the coarse/fine ranking stages degrades performance; the complete <b>DESIGNER</b> pipeline performs best across benchmarks. We further evaluated the "w/o Design Logic" variant on the full book corpus (3.04 million samples). The performance degradation of "w/o Design Logic (Full)" is notably significant, providing stronger evidence for the advantage of employing design logic.</p>
+                            <p>We conducted an ablation study to assess the contributions of three key components: guidance from Design Logics, the coarse ranking, and the fine ranking of Design Logics. To ensure fair comparison, all ablation variants synthesized questions from the same book corpus by uniformly sampling 304,181 instances. The results show that removing explicit Design Logics or the coarse/fine ranking stages degrades performance; the complete <b>DESIGNER</b> pipeline performs best across benchmarks. We further evaluated the "w/o Design Logic" variant on the full book corpus (3.04 million samples). The performance degradation of "w/o Design Logic (Full)" is notably significant, providing stronger evidence for the advantage of employing Design Logic.</p>
                             <img src="static/images/Table5.png" alt="Ablation study table" />
                             
                         </div>
